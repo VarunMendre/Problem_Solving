@@ -2,4 +2,4 @@ rules :
  1. for the outer loop , count the no of lines
  2. inner loop , focus on the colmn & connent them some how to rows 
  3. print them inside the inner for loop
- 4. observe symmetry (if needed)
+ 4. observe symmetry 
