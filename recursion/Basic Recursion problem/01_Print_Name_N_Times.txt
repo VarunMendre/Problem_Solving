@@ -1,6 +1,5 @@
-**Filename:** 01\_Print\_Name\_N\_Times.cpp
+Filename:01\_Print\_Name\_N\_Times.cpp
 
-```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -23,13 +22,13 @@ int main()
 
 **🔍 Code Explanation:**
 
-* `f(int i, int n)` is a recursive function that prints "`i abhi`" from `i = 1` to `n`.
-* **Base Case:** `if(i > n) return;` → Stops recursion once `i` exceeds `n`.
-* **Recursive Step:** `f(i + 1, n);` → Calls itself with `i` incremented.
+f(int i, int n)is a recursive function that prints i abhi from `i = 1` to `n`.
+Base Case:** `if(i > n) return;` → Stops recursion once `i` exceeds `n`.
+Recursive Step: `f(i + 1, n);` → Calls itself with `i` incremented.
 
 ---
 
-**📊 Dry Run (Example: `n = 3`):**
+📊 Dry Run (Example: `n = 3`):
 
 | Function Call | Output  |
 | ------------- | ------- |
@@ -38,10 +37,8 @@ int main()
 | f(3, 3)       | 3 abhi  |
 | f(4, 3)       | — stops |
 
-* Output:
-
-```
-1 abhi  
-2 abhi  
+Final Output:
+1 abhi
+2 abhi
 3 abhi
 ```
