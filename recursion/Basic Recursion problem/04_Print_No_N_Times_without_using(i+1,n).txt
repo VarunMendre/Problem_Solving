@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void F(int i,int n){
+  if(i < 1) return;
+  F(i-1,n);
+  cout<<i<<endl;
+}
+int main(){
+  int n;
+  cin>>n;
+  
+  F(n,n);
+}
+
+
+
+Recursion Tree : 
+
+F(3, 3)
+ |
+ └── F(2, 3)
+      |
+      └── F(1, 3)
+           |
+           └── F(0, 3)
+                └── return (base case)
+           └── prints: 1
+      └── prints: 2
+ └── prints: 3
