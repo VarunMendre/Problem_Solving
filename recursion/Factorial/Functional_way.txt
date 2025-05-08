@@ -1,0 +1,35 @@
+Problem Statement : Factorial of given 'n' number
+
+Ex : N = 4  output : 24
+
+explanation : Factorial of 4 is : 4 * 3 * 2 * 1 = 24 
+
+Method : Functional 
+
+#include <bits/stdc++.h>
+using namespace std;
+int fact(int n){
+  if(n==0) return 1;
+  return n * fact(n-1);
+}
+int main() 
+{
+   int n;
+   cin>>n;
+   cout<<fact(n);
+}
+
+Recursion Tree : 
+
+fact(4)
+|
+--> 4 * fact(3)
+          |
+          --> 3 * fact(2)
+                    |
+                    --> 2 * fact(1)
+                              |
+                              --> 1 * fact(0)
+                                        |
+                                        --> 1
+
