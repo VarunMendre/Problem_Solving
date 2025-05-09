@@ -1,109 +1,107 @@
-# 🧠 Recursion - Introduction  
-> Understand Recursion by Printing Something N Times
+# 🔁 Recursive Array Reversal in C++
+
+This repository contains two implementations to reverse an array using **recursion** in C++. Each version demonstrates a different approach:
+
+- ✅ Using Two Pointers (`left`, `right`)
+- ✅ Using a Single Index (`i`)
 
 ---
 
-## ✅ Pre-requisite  
-You should be comfortable with:
-- Writing a basic function in any language.
-- Making function calls from the `main()` function.
+## 🧩 Problem Statement
+
+You are given an array. The task is to reverse the array using recursion and print the reversed array.
 
 ---
 
-## 📌 What is Recursion?  
-Recursion is the process where a function calls itself until a certain condition (known as the base case) is met. It is often used to solve problems that can be broken down into smaller, similar subproblems.
+## 📌 Example
 
-### 🧠 Example Illustration:
-Imagine a function calling itself without a stopping condition:
+**Input:**
+
+```
+N = 5  
+arr = [5, 4, 3, 2, 1]
+```
+
+**Output:**
+
+```
+1 2 3 4 5
+```
+
+---
+
+## 1️⃣ Solution 1: Two Pointer Approach
+
+### 🔍 Approach
+
+- Use two pointers: one from the beginning (`l`) and one from the end (`r`).
+- Recursively swap `arr[l]` and `arr[r]`, then move the pointers inward (`l + 1`, `r - 1`) until `l >= r`.
+
+### 📌 Code
 
 ```cpp
-void func() {
-    func(); // keeps calling itself endlessly
+void f(int l, int r, int arr[], int n) {
+    if (l >= r) return;
+    swap(arr[l], arr[r]);
+    f(l + 1, r - 1, arr, n);
 }
 ```
 
-This will result in a **Stack Overflow**.
+### 🌳 Recursion Tree
 
----
-
-## 💥 What is Stack Overflow in Recursion?
-
-Each time a function calls itself, it is pushed onto the **call stack**.  
-If no **base condition** is provided, the stack grows indefinitely until it exceeds memory, resulting in a **Stack Overflow** or **Segmentation Fault**.
-
----
-
-## 🧱 Base Condition
-
-A **base condition** is used to stop further recursive calls and allow the function to return.
-
-### 🧾 Pseudocode:
-```cpp
-int count = 0;
-
-void func() {
-    if (count == 3) return;
-    print(count);
-    count++;
-    func();
-}
 ```
-
-### ✅ Output:
-```
-0
-1
-2
+f(0, 4)
+├── f(1, 3)
+│   └── f(2, 2) → base case
+└── unwind and return
 ```
 
 ---
 
-## 💻 Code Implementation (C++)
+## 2️⃣ Solution 2: Single Pointer Approach
+
+### 🔍 Approach
+
+- Use a single index `i`.
+- Swap `arr[i]` and `arr[n - i - 1]`.
+- Continue recursively with `i + 1` until `i >= n/2`.
+
+### 📌 Code
 
 ```cpp
-#include<bits/stdc++.h>
-using namespace std;
-
-int cnt = 0;
-
-void print() {
-    if(cnt == 3) return;   // Base Condition
-    cout << cnt << endl;   // Action
-    cnt++;                 // Progression
-    print();               // Recursive Call
-}
-
-int main() {
-    print();
-    return 0;
+void f(int i, int arr[], int n) {
+    if (i >= n / 2) return;
+    swap(arr[i], arr[n - i - 1]);
+    f(i + 1, arr, n);
 }
 ```
 
----
+### 🌳 Recursion Tree
 
-## 🌳 Recursive Tree
-
-A **recursion tree** helps visualize how recursive calls are made and how they return. Each level of the tree represents a function call and its return.
-
-For example:
 ```
-print(0)
-  └── print(1)
-        └── print(2)
-              └── return
-        └── return
-  └── return
+f(0) → swap arr[0] and arr[4]
+├── f(1) → swap arr[1] and arr[3]
+│   └── f(2) → base case
+└── unwind and return
 ```
 
 ---
 
-## 📚 Summary
+## 🧠 Note
 
-- ✅ What is Recursion?
-- ✅ Base Condition
-- ✅ Stack Overflow / Stack Space
-- ✅ Recursion Tree
+In both methods:
+- Only `n/2` swaps are performed.
+- The array is reversed **in-place** with **O(n)** time and **O(n)** space due to recursion stack.
 
 ---
 
-_This is part of my DSA Learning Journey. Stay tuned for more recursion problems and solutions!_
+## 📁 Files
+
+- `using_two_pointers.cpp` – Implements the two-pointer method.
+- `using_single_pointer.cpp` – Implements the single-index method.
+
+---
+
+## 📌 Author
+
+This repository is maintained by **Varun Mendre** ✨
