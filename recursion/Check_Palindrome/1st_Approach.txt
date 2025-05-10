@@ -1,0 +1,50 @@
+Problem Statement: "Given a string, check if the string is palindrome or not."  A string is said to be palindrome if the reverse of the string is the same as the string.
+
+Examples:
+
+Example 1:
+Input: Str =  “ABCDCBA”
+Output: Palindrome
+Explanation: String when reversed is the same as string.
+
+Example 2:
+Input: Str = “TAKE U FORWARD”
+Output: Not Palindrome
+Explanation: String when reversed is not the same as string.
+
+Solution : 
+
+A.1st Approach (On local compiler): 
+
+1.Uses recursion to check if the string is a palindrome.
+2.Base case: stops when the index reaches the middle of the string.
+3.Compares characters from both ends (s[i] and s[s.size() - i - 1]).
+4.Returns false immediately if a mismatch is found.
+5.Continues checking recursively by incrementing the index i. 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool F(int i,string &s){
+  if(i >= s.size()/2) return true;
+  if(s[i] != s[s.size() - i - 1]) return false;
+   return F(i+1,s);
+}
+int main() 
+{
+  string s = "amanaplanacanalPanama";
+  cout<<F(0,s);
+  return 0;
+}
+
+Recursion Tree : s = "MADAM"
+
+F(0, s): M == M
+|
+└── F(1, s): A == A
+    |
+    └── F(2, s): D == D
+        |
+        └── F(3, s): A == A
+            |
+            └── F(4, s): M == M → Base case reached, return true
