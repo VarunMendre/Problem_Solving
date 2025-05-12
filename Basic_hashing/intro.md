@@ -92,9 +92,3 @@ We will use **maps** or **unordered_maps** in such cases (covered later).
 ## 🧩 Next Module: Character Hashing
 
 Now that you've learned **number hashing**, we'll explore how to use similar logic for characters and strings.
-
----
-
-## 📊 Visual Flowchart
-
-![Hashing Flowchart](./A_flowchart_in_the_image_illustrates_the_use_of_ha.png)
