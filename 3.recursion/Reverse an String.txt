@@ -1,0 +1,15 @@
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        reverseStringHelper(0,s);
+    }
+private:
+    void reverseStringHelper(int i , vector<char> &s){
+        int n = s.size();
+        if(i>= n/2) return;
+
+        swap(s[i],s[n-i-1]);
+
+        reverseStringHelper(i+1,s);
+    }  
+};
