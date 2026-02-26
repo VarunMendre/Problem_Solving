@@ -1,263 +1,202 @@
-# Priority Queue & Binary Heap Notes
-
----
+# Introduction to Priority Queues using Binary Heaps
 
 ## What is a Priority Queue?
 
-A **Priority Queue** is a special type of queue where each element is assigned a priority. Instead of being processed in the order they arrive (like a normal queue - FIFO), the element with the **highest priority** is processed first.
+A Priority Queue is a special type of queue where each element is
+assigned a priority, and the element with the highest priority is
+processed first.
 
-If two elements have the same priority, they are handled based on their insertion order.
+If two elements have the same priority, they are handled based on
+insertion order.
 
 ### Real-Life Example
-Think of an emergency room in a hospital:
-- Patients are not treated based only on arrival time.
-- A patient with a heart attack is treated before someone with a mild cold.
+
+Think of a hospital emergency room: Patients are treated based on how
+critical their condition is --- not based on arrival time.
 
 ### Applications
-- Task Scheduling
-- Pathfinding Algorithms (Dijkstra’s Algorithm)
-- Real-Time Systems
-- CPU Scheduling
 
----
+-   Task Scheduling
+-   Dijkstra's Algorithm
+-   Prim's Algorithm
+-   Event-driven systems
+-   Top K Problems
+
+------------------------------------------------------------------------
 
 # Binary Heap
 
-A **Binary Heap** is a Binary Tree that satisfies:
+A Binary Heap is a Binary Tree that satisfies:
 
-1. It must be a **Complete Binary Tree**.
-2. It must satisfy the **Heap Property**.
+1.  Complete Binary Tree Property
+2.  Heap Property
 
----
+------------------------------------------------------------------------
 
 ## Complete Binary Tree
 
-A binary tree in which:
-- All levels are completely filled except possibly the last level.
-- The last level is filled from left to right.
+-   All levels are completely filled
+-   Except possibly the last level
+-   The last level is filled from left to right
 
-This ensures efficient array representation.
-
----
+------------------------------------------------------------------------
 
 ## Heap Property
 
-A Binary Heap can be:
+### Min Heap
 
-### 1️⃣ Min Heap
-For every node:
+-   Parent node is smaller than its children
+-   Root contains the minimum element
 
-```
-Parent <= Left Child
-Parent <= Right Child
-```
+### Max Heap
 
-- Root contains the **minimum** element.
+-   Parent node is greater than its children
+-   Root contains the maximum element
 
-### 2️⃣ Max Heap
-For every node:
+------------------------------------------------------------------------
 
-```
-Parent >= Left Child
-Parent >= Right Child
-```
+# Array Representation of Binary Heap
 
-- Root contains the **maximum** element.
+-   Root â†’ arr\[0\]
 
----
+For any index i:
 
-# Representation of Binary Heap (Array Representation)
+Left Child = 2*i + 1\
+Right Child = 2*i + 2\
+Parent = (i - 1) / 2
 
-A Binary Heap is represented using an array.
-
-- Root → `arr[0]`
-
-### Index Relationships
-
-| Node Index (i) | Left Child | Right Child |
-|---------------|------------|-------------|
-| i             | 2*i + 1    | 2*i + 2     |
-
-### Parent Index
-
-| Child Index (i) | Parent Index |
-|------------------|--------------|
-| i                | (i - 1) / 2  |
-
----
+------------------------------------------------------------------------
 
 # Operations in Min Heap
 
-- Insert()
-- Heapify()
-- getMin()
-- ExtractMin()
-- DecreaseKey()
-- Delete()
+-   Insert()
+-   Heapify()
+-   getMin()
+-   ExtractMin()
+-   DecreaseKey()
+-   Delete()
 
-> Note: A Binary Heap must always maintain:
-> - Complete Binary Tree property
-> - Heap Property (Min/Max)
+------------------------------------------------------------------------
 
----
+## Insert()
 
-## 1️⃣ Insert(x)
+1.  Insert at last vacant position
+2.  Compare with parent
+3.  Swap if parent is greater
+4.  Repeat until heap property is restored
 
-### Steps:
-1. Insert the element at the first vacant position (last level, leftmost).
-2. Complete Binary Tree property is maintained automatically.
-3. Compare with parent.
-4. If parent > child → Swap.
-5. Repeat until heap property is restored.
+Time Complexity: O(log N)
 
-### Time Complexity
-```
-O(log N)
-```
+------------------------------------------------------------------------
 
----
+## Heapify()
 
-## 2️⃣ Heapify(i)
+1.  Find smallest among node and its children
+2.  Swap with smallest
+3.  Recursively call heapify
 
-Used when heap property is violated at index `i`.
+Time Complexity: O(log N)
 
-### Steps:
-1. Find smallest among:
-   - Current node
-   - Left child
-   - Right child
-2. If smallest is not the current node:
-   - Swap
-   - Recursively call Heapify()
-3. Stop when property is satisfied.
+------------------------------------------------------------------------
 
-### Time Complexity
-```
-O(log N)
-```
+## getMin()
 
----
+-   Return arr\[0\]
 
-## 3️⃣ getMin()
+Time Complexity: O(1)
 
-- Returns `arr[0]`
-- Root always contains minimum element.
+------------------------------------------------------------------------
 
-### Time Complexity
-```
-O(1)
-```
+## ExtractMin()
 
----
+1.  Replace root with last element
+2.  Reduce size
+3.  Call heapify(0)
 
-## 4️⃣ ExtractMin()
+Time Complexity: O(log N)
 
-Removes minimum element.
+------------------------------------------------------------------------
 
-### Steps:
-1. Store root value.
-2. Replace root with last element.
-3. Reduce size by 1.
-4. Call Heapify(0).
+## DecreaseKey()
 
-### Time Complexity
-```
-O(log N)
-```
+1.  Update value
+2.  Swap upward if parent is greater
 
----
+Time Complexity: O(log N)
 
-## 5️⃣ DecreaseKey(i, new_val)
+------------------------------------------------------------------------
 
-### Steps:
-1. Update `arr[i] = new_val`.
-2. Compare with parent.
-3. If parent > current → Swap.
-4. Repeat until heap property is satisfied.
+## Delete()
 
-### Time Complexity
-```
-O(log N)
-```
+1.  Set value to INT_MIN
+2.  Call DecreaseKey()
+3.  Call ExtractMin()
 
----
+Time Complexity: O(log N)
 
-## 6️⃣ Delete(i)
+------------------------------------------------------------------------
 
-### Steps:
-1. Replace value at index `i` with `INT_MIN`.
-2. Call `DecreaseKey(i, INT_MIN)`.
-3. Call `ExtractMin()`.
+# C++ Implementation of Min Heap
 
-### Time Complexity
-```
-O(log N)
-```
-
----
-
-# C++ Implementation (Min Heap)
-
-```cpp
+``` cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-class BinaryHeap {
-public:
+class MinHeap {
+    int *arr;
     int capacity;
     int size;
-    int* arr;
 
-    BinaryHeap(int cap) {
+public:
+    MinHeap(int cap) {
         capacity = cap;
         size = 0;
-        arr = new int[capacity];
+        arr = new int[cap];
     }
 
     int parent(int i) { return (i - 1) / 2; }
     int left(int i) { return 2 * i + 1; }
     int right(int i) { return 2 * i + 2; }
 
-    void Insert(int x) {
+    void insert(int x) {
         if (size == capacity) {
-            cout << "Heap Overflow" << endl;
+            cout << "Overflow\n";
             return;
         }
 
-        arr[size] = x;
-        int k = size;
-        size++;
+        int i = size++;
+        arr[i] = x;
 
-        while (k != 0 && arr[parent(k)] > arr[k]) {
-            swap(arr[parent(k)], arr[k]);
-            k = parent(k);
+        while (i != 0 && arr[parent(i)] > arr[i]) {
+            swap(arr[i], arr[parent(i)]);
+            i = parent(i);
         }
     }
 
-    void Heapify(int ind) {
-        int li = left(ind);
-        int ri = right(ind);
-        int smallest = ind;
+    void heapify(int i) {
+        int l = left(i);
+        int r = right(i);
+        int smallest = i;
 
-        if (li < size && arr[li] < arr[smallest])
-            smallest = li;
+        if (l < size && arr[l] < arr[smallest])
+            smallest = l;
 
-        if (ri < size && arr[ri] < arr[smallest])
-            smallest = ri;
+        if (r < size && arr[r] < arr[smallest])
+            smallest = r;
 
-        if (smallest != ind) {
-            swap(arr[ind], arr[smallest]);
-            Heapify(smallest);
+        if (smallest != i) {
+            swap(arr[i], arr[smallest]);
+            heapify(smallest);
         }
     }
 
     int getMin() {
+        if (size <= 0) return INT_MAX;
         return arr[0];
     }
 
-    int ExtractMin() {
+    int extractMin() {
         if (size <= 0) return INT_MAX;
-
         if (size == 1) {
             size--;
             return arr[0];
@@ -266,48 +205,42 @@ public:
         int root = arr[0];
         arr[0] = arr[size - 1];
         size--;
-        Heapify(0);
+        heapify(0);
+
         return root;
     }
 
-    void DecreaseKey(int i, int val) {
-        arr[i] = val;
+    void decreaseKey(int i, int new_val) {
+        arr[i] = new_val;
         while (i != 0 && arr[parent(i)] > arr[i]) {
-            swap(arr[parent(i)], arr[i]);
+            swap(arr[i], arr[parent(i)]);
             i = parent(i);
         }
     }
 
-    void Delete(int i) {
-        DecreaseKey(i, INT_MIN);
-        ExtractMin();
+    void deleteKey(int i) {
+        decreaseKey(i, INT_MIN);
+        extractMin();
     }
 };
 ```
 
----
+------------------------------------------------------------------------
 
-# Complexity Summary
+# Time Complexity Summary
 
-| Operation     | Time Complexity |
-|--------------|-----------------|
-| Insert       | O(log N)        |
-| Heapify      | O(log N)        |
-| getMin       | O(1)            |
-| ExtractMin   | O(log N)        |
-| DecreaseKey  | O(log N)        |
-| Delete       | O(log N)        |
+  Operation       Time Complexity
+  --------------- -----------------
+  Insert()        O(log N)
+  Heapify()       O(log N)
+  getMin()        O(1)
+  ExtractMin()    O(log N)
+  DecreaseKey()   O(log N)
+  Delete()        O(log N)
 
----
+------------------------------------------------------------------------
 
 # Final Notes
 
-- Priority Queue is commonly implemented using a Binary Heap.
-- Min Heap → Used when smallest element priority matters.
-- Max Heap → Used when largest element priority matters.
-- Heap ensures efficient insertion and deletion compared to sorted arrays.
-
----
-
-These notes are GitHub-ready and structured for revision before interviews or DSA practice.
-
+Binary Heap is the backbone of Priority Queue and is very important for
+DSA interviews and competitive programming.
