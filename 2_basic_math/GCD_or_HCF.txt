@@ -1,0 +1,63 @@
+Problem statement
+You are given two integers 'n', and 'm'.
+Calculate 'gcd(n,m)', without using library functions.
+
+Note:
+The greatest common divisor (gcd) of two numbers 'n' and 'm' is the largest positive number that divides both 'n' and 'm' without leaving a remainder.
+
+Example:
+Input: 'n' = 6, 'm' = 4
+
+Output: 2
+
+Explanation:
+Here, gcd(4,6) = 2, because 2 is the largest positive integer that divides both 4 and 6.
+
+solu:-
+
+brute force : 
+
+int findGcd(int n1, int n2) {
+    // Initialize gcd to 1
+    int gcd = 1;
+
+    // Iterate from 1 up to
+    // the minimum of n1 and n2
+    for(int i = 1; i <= min(n1, n2); i++) {
+        // Check if i is a common
+        // factor of both n1 and n2
+        if(n1 % i == 0 && n2 % i == 0) {
+            // Update gcd to the
+            // current common factor i
+            gcd = i;
+        }
+    }
+
+    // Return the greatest
+    // common divisor (gcd)
+    return gcd;
+}
+
+better approach : 
+ 
+int findGcd(int n1, int n2) {
+    for(int i = min(n1, n2); i > 0; i--) {
+        if(n1 % i == 0 && n2 % i == 0) {
+            return i;
+        }
+    }
+    return 1;
+}
+
+optimal approach (The Euclidean Algorithm) :-
+
+int calcGCD(int n, int m){
+    // Write your code here.
+    while(n > 0 && m > 0){
+        if(n > m) n = n % m;
+        else m = m % n;
+
+    }
+    if(n==0) return m;
+    return n;
+}

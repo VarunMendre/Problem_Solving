@@ -1,0 +1,38 @@
+problem : Sum of First N numbers 
+
+Ex : N = 3  
+     o/p : 6
+     Explanation : 1 + 2 + 3 = 6 
+
+method 1 : parameterised way :-
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void F(int i,int sum){
+  if(i < 1){
+    cout<<sum;
+    return;
+  }
+  F(i-1,sum+i);
+}
+int main() 
+{
+   int n;
+   cin>>n;
+   F(n,0);
+}
+
+Recursion Tree : 
+
+F(3, 0)
+│
+├── call → F(2, 3)
+│   │
+│   ├── call → F(1, 5)
+│   │   │
+│   │   ├── call → F(0, 6)
+│   │   │   └── print: 6
+│   │   └── return
+│   └── return
+└── return

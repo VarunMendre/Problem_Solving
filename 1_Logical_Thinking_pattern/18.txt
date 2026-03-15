@@ -1,0 +1,22 @@
+Sample Input 1:
+3
+Sample Output 1:
+C
+C B 
+C B A
+
+Sample Input 2 :
+1
+Sample Output 2 :
+A 
+
+void alphaTriangle(int n) {
+    // Write your code here.
+    for(int i=1;i<=n;i++){
+        char start = 'A' + n - 1;
+     for(int j = 0;j<i;j++){
+       cout<<(char)(start - j)<<" ";
+     }
+     cout<<endl;
+   }
+}

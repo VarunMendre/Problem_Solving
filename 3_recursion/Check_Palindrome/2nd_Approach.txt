@@ -1,0 +1,40 @@
+2nd Approach : 
+
+B.2nd approach (on Leetcode):
+
+1.Clean the string by removing non-alphanumeric characters and converting all letters to lowercase.
+2.Use a helper function (isPalindromeHelper) to perform the palindrome check recursively.
+3.Base case: If the index i reaches or crosses the middle of the string, return true.
+4.Recursive case: Compare characters at positions i and s.size() - i - 1; if they differ, return false.
+5.If all character pairs match, the function eventually returns true, confirming the string is a palindrome.
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string cleaned="";
+        for(char c : s){
+            if(isalnum(c)){
+                cleaned += tolower(c);
+            }
+        }
+         return isPalindromeHelper(0,cleaned);
+    }
+private:
+    bool isPalindromeHelper(int i , string &s){
+        if(i >= s.size() / 2) return true;
+        if(s[i] != s[s.size() - i - 1]) return false;
+         return isPalindromeHelper(i+1,s);
+    }    
+};
+
+Recursion Tree : s = "MADAM"
+
+F(0, s): M == M
+|
+└── F(1, s): A == A
+    |
+    └── F(2, s): D == D
+        |
+        └── F(3, s): A == A
+            |
+            └── F(4, s): M == M → Base case reached, return true

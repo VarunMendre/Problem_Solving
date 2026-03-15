@@ -1,0 +1,51 @@
+Problem Statement: You are given an array. The task is to reverse the array and print it. 
+
+Examples:
+
+Example 1:
+
+Input: N = 5, arr[] = {5,4,3,2,1}
+Output: {1,2,3,4,5}
+
+Explanation: Since the order of elements gets reversed the first element will occupy the fifth position, the second element occupies the fourth position and so on
+
+
+🔍 Approach:
+1.Take input for the size n and the array elements.
+2.Define a recursive function f(l, r, arr, n) that:
+3.Swaps the elements at indices l and r.
+4.Recursively calls itself with l + 1 and r - 1 until l >= r.
+5.Call the function with the initial values f(0, n-1, arr, n).
+
+Print the reversed array.
+#include <bits/stdc++.h>
+using namespace std;
+ void f(int l,int r,int arr[],int n){
+   if(l>=r) return;
+   swap(arr[l],arr[r]);
+   f(l+1,r-1,arr,n);
+ }
+int main() 
+{
+   int n;
+   cin>>n;
+   int arr[n];
+   for(int i=0;i<n;i++) cin>>arr[i];
+   
+   f(0,n-1,arr,n);
+   
+   for(int i=0;i<n;i++)cout<<arr[i]<<" ";
+}
+
+
+Recursion Tree : 
+
+f(0, 4)      
+│
+├── f(1, 3)    
+│   │
+│   └── f(2, 2) 
+│       └── return
+│
+└── return up the stack
+

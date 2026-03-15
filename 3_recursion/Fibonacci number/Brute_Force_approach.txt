@@ -1,0 +1,65 @@
+Brute Force approach :
+
+Approach:
+1.Input Handling:
+The function printFibonacci(n) takes an integer n as input, representing the nth term (0-based indexing) of the Fibonacci series.
+
+2.Edge Case:
+
+If n == 0, directly print 0 and return.
+
+3.Initialization (Brute Force Iterative):
+
+Declare an array fib[] of size n + 1.
+
+Initialize the first two terms:
+fib[0] = 0,
+fib[1] = 1.
+
+4.Iterative Calculation:
+
+Use a loop from i = 2 to n to compute each Fibonacci number as:
+fib[i] = fib[i - 1] + fib[i - 2].
+
+5.Output the Series:
+Print the entire array from fib[0] to fib[n].
+
+Solution : 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to print Fibonacci series up to the nth term
+void printFibonacci(int n) {
+    if (n == 0) {
+        cout << 0 << endl;
+        return;
+    }
+
+    int fib[n + 1];
+    fib[0] = 0;
+    fib[1] = 1;
+
+    for (int i = 2; i <= n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+    }
+
+    cout << "The Fibonacci Series up to " << n << "th term:" << endl;
+    for (int i = 0; i <= n; i++) {
+        cout << fib[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    int n = 5;
+    printFibonacci(n);
+    return 0;
+}
+
+
+⏱️ Time Complexity:
+O(n) — Each Fibonacci number is calculated once in a loop.
+
+🧠 Space Complexity:
+O(n) — For storing the entire series in an array.

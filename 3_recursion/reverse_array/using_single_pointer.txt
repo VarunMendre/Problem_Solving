@@ -1,0 +1,46 @@
+Solution 2: Space-optimized iterative method
+
+Approach: Unlike the previous method we use the same array to obtain the result. Follow the steps below.
+
+Keep a pointer p1  at the first index and another p2 at the last index of the array. 
+Swap the elements pointed by p1 and p2, Post swapping increment p1 and decrement p2.
+This process is repeated for only the first n/2 elements where n is the length of array.
+Note: Swapping all the n elements instead of n/2 elements leaves the array unaltered.
+
+solution:
+
+#include <bits/stdc++.h>
+using namespace std;
+void f(int i, int arr[],int n){
+  if(i >= n/2) return;
+  
+  swap(arr[i],arr[n-i-1]);
+  
+  f(i+1,arr,n);
+}
+int main() 
+{
+   int n ; 
+   cin>>n;
+   
+   int arr[n];
+   
+   for(int i=0;i<n;i++) cin>>arr[i];
+   
+   f(0,arr,n);
+   
+   for(int i=0;i<n;i++)cout<<arr[i]<<" ";
+}
+
+
+Recursion Tree : 
+
+f(0) → swap arr[0] and arr[4] → [5, 2, 3, 4, 1]
+│
+├── f(1) → swap arr[1] and arr[3] → [5, 4, 3, 2, 1]
+│   │
+│   └── f(2) → base case hit (2 >= 2) → return
+│
+└── return up the stack
+
+
