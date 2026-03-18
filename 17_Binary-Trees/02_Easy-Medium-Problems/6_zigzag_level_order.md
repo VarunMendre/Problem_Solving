@@ -76,4 +76,4 @@ public:
 | **Time** | `O(N)` | Every node is visited exactly once |
 | **Space** | `O(N)` | Queue holds at most `N/2` nodes at a time (last level), and the result stores all `N` values |
 
-> `N` = total number of nodes in the tree
+ `N` = total number of nodes in the tree
