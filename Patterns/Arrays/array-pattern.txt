@@ -1,0 +1,6 @@
+1. Two Pointers 
+   I. Opposite Direction 
+      i. Rearrange array elements by sign
+      ii. Merge two sorted arrays without extra space
+      iii.3 Sum
+      iv. 4 Sum
