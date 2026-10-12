@@ -4,3 +4,12 @@
       ii. Merge two sorted arrays without extra space
       iii.3 Sum
       iv. 4 Sum
+   II. Fast & Slow (same direction)
+      i. Move Zeros to End
+      ii. Remove duplicates from sorted array
+   III. Two Arrays Merge/Compare
+      i. Union of two sorted arrays
+      ii. Intersection of two sorted arrays
+   IV. Reversal-based Rotation
+      i. Left Rotate Array by One
+      ii. Left Rotate Array by K Places
